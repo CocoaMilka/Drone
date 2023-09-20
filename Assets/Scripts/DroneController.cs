@@ -6,10 +6,7 @@ public class DroneController : MonoBehaviour
     // Force will be applied from propellers
     public List<GameObject> props;
 
-    public float internalHoverHeight = 3f;
-    public float hoverPower = 3f;
-
-    public float distance = 3f;
+    public float distance = 5f;
     public float force = 40f;
     public float turnSpeed = 100f;
 
@@ -45,11 +42,7 @@ public class DroneController : MonoBehaviour
             if (Physics.Raycast(prop.transform.position, transform.TransformDirection(Vector3.down), out hit, distance))
             {
                 //body.AddForceAtPosition(transform.TransformDirection(Vector3.up) * Mathf.Pow(distance - hit.distance, 2) / distance * force, prop.transform.position);
-
-                if (distance < internalHoverHeight)
-                {
-                    body.AddForce(transform.TransformDirection(Vector3.up) * hoverPower * (1 - (distance / internalHoverHeight)), ForceMode.Acceleration);
-                }
+                body.AddForceAtPosition(transform.TransformDirection(Vector3.up) * force / 4, prop.transform.position);
 
                 // Debug raycast
                 Debug.DrawRay(prop.transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
