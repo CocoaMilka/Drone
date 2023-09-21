@@ -9,7 +9,10 @@ public class DroneController : MonoBehaviour
     // Speed of gravity is set to 10, this is to allow hover
     public float baseForce = 10f;
     public float forwardForceMultiplier = 5f;
-    public float turnTorqueMultiplier = 5f;
+    public float turnTorqueMultiplier = 1.5f;
+    public float verticalForceMultiplier = 10f;
+
+    private float drag = 0.5f;  // Drag coefficient (adjust as needed)
 
     // Controller Input
     public float horizontalSensitivity = 0.1f;
@@ -46,6 +49,7 @@ public class DroneController : MonoBehaviour
         {
             HandleInput();
             ApplyPhysics();
+            ApplyDrag();
         }
     }
 
@@ -57,7 +61,7 @@ public class DroneController : MonoBehaviour
         float forwardInput = Input.GetAxis("Forward_R") * verticalSensitivity;
 
         // Update force and torque based on input
-        baseForce = 10 + verticalInput;
+        baseForce = 10 + verticalInput * verticalForceMultiplier;
         Debug.Log(baseForce);
 
         body.AddForce(transform.forward * forwardInput * forwardForceMultiplier);
@@ -72,6 +76,13 @@ public class DroneController : MonoBehaviour
             body.AddForceAtPosition(transform.TransformDirection(Vector3.up) * baseForce / 4, prop.transform.position);
         }
     }
+    private void ApplyDrag()
+    {
+        // Apply drag to slow down the drone when no input is present
+        Vector3 dragForce = -body.velocity * drag;
+        body.AddForce(dragForce);
+    }
+
 
     void startDrone()
     {
