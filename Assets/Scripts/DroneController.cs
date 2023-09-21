@@ -4,7 +4,16 @@ using UnityEngine;
 public class DroneController : MonoBehaviour
 {
     bool isOn = false;
+
+    public Camera secondCamera;
+
+    // Physics is applied from each propellor, using faux prop locations so model can balance, spinny props are just visual
     public List<GameObject> props;
+    public List<GameObject> spinnyProps;
+
+    public float maxPropellerTorque = 1000f; // Maximum torque to apply to propellers
+    public float torqueIncreaseRate = 500f;  // Rate at which torque increases to start the propellers
+    public float torqueDecreaseRate = 200f;  // Rate at which torque decreases to slow down the propellers
 
     // Speed of gravity is set to 10, this is to allow hover
     public float baseForce = 10f;
@@ -41,12 +50,19 @@ public class DroneController : MonoBehaviour
                 Debug.Log("Starting up drone...");
             }
         }
+
+        if (Input.GetButtonDown("Select"))
+        {
+            secondCamera.enabled = !secondCamera.enabled;
+            Debug.Log("Camera Toggled");
+        }
     }
 
     private void FixedUpdate()
     {
         if (isOn)
         {
+            SpinPropellers();
             HandleInput();
             ApplyPhysics();
             ApplyDrag();
@@ -73,7 +89,7 @@ public class DroneController : MonoBehaviour
         // Apply upwards force from each propeller
         foreach (GameObject prop in props)
         {
-            body.AddForceAtPosition(transform.TransformDirection(Vector3.up) * baseForce / 4, prop.transform.position);
+            body.AddForceAtPosition(transform.TransformDirection(Vector3.up) * baseForce / props.Count, prop.transform.position);
         }
     }
     private void ApplyDrag()
@@ -95,4 +111,26 @@ public class DroneController : MonoBehaviour
         isOn = false;
         // Add logic to turn off rotors
     }
+
+    void SpinPropellers()
+    {
+        foreach (GameObject prop in spinnyProps)
+        {
+            Rigidbody propRigidbody = prop.GetComponent<Rigidbody>();
+            if (propRigidbody != null)
+            {
+                // Gradually increase torque to start the propellers
+                float currentTorque = Mathf.Min(maxPropellerTorque, propRigidbody.angularDrag + torqueIncreaseRate * Time.deltaTime);
+                propRigidbody.AddTorque(prop.transform.up * currentTorque, ForceMode.Acceleration);
+
+                // Gradually decrease torque to slow down the propellers
+                if (!isOn)
+                {
+                    currentTorque = Mathf.Max(0, propRigidbody.angularDrag - torqueDecreaseRate * Time.deltaTime);
+                    propRigidbody.angularDrag = currentTorque;
+                }
+            }
+        }
+    }
+
 }
