@@ -1077,7 +1077,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.30078173, y: 0.000000032819212, z: -0.000000010350731, w: 0.95369303}
+  m_LocalRotation: {x: 0.30078173, y: -0.000000032819212, z: 0.000000010350731, w: 0.95369303}
   m_LocalPosition: {x: 0, y: 2.807, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1415,6 +1415,24 @@ Transform:
   m_Father: {fileID: 325414631}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1384751153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cb18eef4e82eb7a48a7a1d5d8fb6796f, type: 3}
+  m_PrefabInstance: {fileID: 1619968573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1384751155
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384751153}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 19.8, y: 1.9, z: 19.56}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1443812116
 GameObject:
   m_ObjectHideFlags: 3
@@ -1484,7 +1502,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443812116}
-  m_LocalRotation: {x: 0.3007817, y: 0.000000016409606, z: -0.0000000051753632, w: 0.95369303}
+  m_LocalRotation: {x: 0.3007817, y: -0.000000016409606, z: 0.0000000051753632, w: 0.95369303}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1977,6 +1995,10 @@ PrefabInstance:
     - target: {fileID: 3355994495667837931, guid: 653c9d7d59780ef4eaac792d7e050b17, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355994495667837932, guid: 653c9d7d59780ef4eaac792d7e050b17, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3355994495667837933, guid: 653c9d7d59780ef4eaac792d7e050b17, type: 3}
       propertyPath: m_Enabled
