@@ -21,7 +21,7 @@ public class DroneController : MonoBehaviour
     public float turnTorqueMultiplier = 1.5f;
     public float verticalForceMultiplier = 10f;
 
-    private float drag = 0.5f;  // Drag coefficient (adjust as needed)
+    public float drag = 1.5f;  // Drag coefficient (adjust as needed)
 
     // Controller Input
     public float horizontalSensitivity = 0.1f;
@@ -99,6 +99,7 @@ public class DroneController : MonoBehaviour
         // Apply drag to slow down the drone when no input is present
         Vector3 dragForce = -body.velocity * drag;
         body.AddForce(dragForce);
+        body.AddTorque(-body.angularVelocity * drag);
     }
 
 
