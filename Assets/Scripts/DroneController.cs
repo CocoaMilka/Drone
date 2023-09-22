@@ -75,12 +75,14 @@ public class DroneController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal_R") * horizontalSensitivity;
         float verticalInput = Input.GetAxis("Vertical_L") * verticalSensitivity;
         float forwardInput = Input.GetAxis("Forward_R") * verticalSensitivity;
+        float leftRightInput = Input.GetAxis("LeftRight_R") * horizontalSensitivity;
 
         // Update force and torque based on input
         baseForce = 10 + verticalInput * verticalForceMultiplier;
         Debug.Log(baseForce);
 
         body.AddForce(transform.forward * forwardInput * forwardForceMultiplier);
+        body.AddForce(transform.right * leftRightInput * forwardForceMultiplier);
         body.AddTorque(transform.up * horizontalInput * turnTorqueMultiplier);
     }
 
@@ -132,5 +134,4 @@ public class DroneController : MonoBehaviour
             }
         }
     }
-
 }
