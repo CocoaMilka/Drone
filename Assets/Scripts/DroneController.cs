@@ -4,6 +4,7 @@ using UnityEngine;
 public class DroneController : MonoBehaviour
 {
     bool isOn = false;
+    bool isSelected = true;
 
     public Camera secondCamera;
 
@@ -21,7 +22,7 @@ public class DroneController : MonoBehaviour
     public float turnTorqueMultiplier = 1.5f;
     public float verticalForceMultiplier = 10f;
 
-    public float drag = 1.5f;  // Drag coefficient (adjust as needed)
+    public float drag = 1.5f;
 
     // Controller Input
     public float horizontalSensitivity = 0.1f;
@@ -102,19 +103,17 @@ public class DroneController : MonoBehaviour
         body.AddTorque(-body.angularVelocity * drag);
     }
 
-
     void startDrone()
     {
         isOn = true;
-        // Add logic to spin rotors
     }
 
     void stopDrone()
     {
         isOn = false;
-        // Add logic to turn off rotors
     }
 
+    // Purely visual, doesn't work properly tho smh my head
     void SpinPropellers()
     {
         foreach (GameObject prop in spinnyProps)

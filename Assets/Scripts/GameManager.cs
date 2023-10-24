@@ -4,11 +4,18 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using Cinemachine;
+
 public class GameManager : MonoBehaviour
 {
     public GameObject menu;
     public float Gravity = 10f;
     private bool isMenuOpen = false;
+
+    public CinemachineFreeLook followCamera;
+
+    public GameObject drone;
+    public GameObject climbingRobot;
 
     void Start()
     {
@@ -18,14 +25,39 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleMenu();
         }
+
+        RobotSelector();
     }
+
+    // Switch Robots
+    void RobotSelector()
+    {
+        // Select Drone
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            drone.GetComponent<DroneController>().enabled = true;
+            climbingRobot.GetComponent<ClimbingRobotController>().enabled = false;
+            followCamera.Follow = drone.transform;
+            followCamera.LookAt = drone.transform;
+            Debug.Log("Drone activated!");
+        }
+        // Select Climbing Robot
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            drone.GetComponent<DroneController>().enabled = false;
+            climbingRobot.GetComponent<ClimbingRobotController>().enabled = true;
+            followCamera.Follow = climbingRobot.transform;
+            followCamera.LookAt = climbingRobot.transform;
+            Debug.Log("Climbing Robot activated!");
+        }
+    }
+
 
     void ToggleMenu()
     {
