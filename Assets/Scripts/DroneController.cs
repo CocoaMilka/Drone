@@ -4,7 +4,7 @@ using UnityEngine;
 public class DroneController : MonoBehaviour
 {
     bool isOn = false;
-    bool isSelected = true;
+    public bool isSelected = true;
 
     public Camera secondCamera;
 
@@ -63,8 +63,12 @@ public class DroneController : MonoBehaviour
     {
         if (isOn)
         {
+            // If drone is selected, then user can control (handled in GameManager)
+            if (isSelected) 
+            {
+                HandleInput();
+            }
             SpinPropellers();
-            HandleInput();
             ApplyPhysics();
             ApplyDrag();
         }

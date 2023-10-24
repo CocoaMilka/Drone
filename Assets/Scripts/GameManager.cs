@@ -38,24 +38,29 @@ public class GameManager : MonoBehaviour
     // Switch Robots
     void RobotSelector()
     {
+        // When creating robots, each should contain a controller script with a selector flag. All physics will continue to apply when flag is off but input will be disabled.
+
         // Select Drone
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            drone.GetComponent<DroneController>().enabled = true;
-            climbingRobot.GetComponent<ClimbingRobotController>().enabled = false;
+            drone.GetComponent<DroneController>().isSelected = true;
+            climbingRobot.GetComponent<ClimbingRobotController>().isSelected = false;
             followCamera.Follow = drone.transform;
             followCamera.LookAt = drone.transform;
             Debug.Log("Drone activated!");
         }
+
         // Select Climbing Robot
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            drone.GetComponent<DroneController>().enabled = false;
-            climbingRobot.GetComponent<ClimbingRobotController>().enabled = true;
+            drone.GetComponent<DroneController>().isSelected = false;
+            climbingRobot.GetComponent<ClimbingRobotController>().isSelected = true;
             followCamera.Follow = climbingRobot.transform;
             followCamera.LookAt = climbingRobot.transform;
             Debug.Log("Climbing Robot activated!");
         }
+
+        // Repeat to add more robots
     }
 
 
