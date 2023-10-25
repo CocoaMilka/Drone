@@ -51,6 +51,7 @@ public class ClimbingRobotController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(sensor.transform.position, sensor.transform.forward, out hit, 1f))
         {
+            // Smooth rotation when climbing walls
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
             transform.position = Vector3.Slerp(transform.position, hit.point, Time.deltaTime * 5);
@@ -80,7 +81,7 @@ public class ClimbingRobotController : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().useGravity = false;
         }
 
-        // Debug Ray
+        // Debug Rays
         Debug.DrawRay(sensor.transform.position, sensor.transform.forward * .2f, Color.green);
         Debug.DrawRay(sensorBottom.transform.position, sensorBottom.transform.forward * 0.5f, Color.green);
     }
