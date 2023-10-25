@@ -6,7 +6,11 @@ public class ClimbingRobotController : MonoBehaviour
 
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
-    public GameObject sensor;  // The point from which the ray will be cast
+
+    // Moveable on robot, for detecting ground and walls
+    public GameObject sensor;
+    public GameObject sensorBottom;
+
     public bool isGrounded = false;
 
     void Update()
@@ -36,26 +40,42 @@ public class ClimbingRobotController : MonoBehaviour
     private void ApplyPhysics()
     {
         // Wall sticking and Surface Snapping
+
+        // Forward sensor
         RaycastHit hit;
         if (Physics.Raycast(sensor.transform.position, sensor.transform.forward, out hit, 1.5f))
         {
-            isGrounded = true;
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
             transform.position = Vector3.Slerp(transform.position, hit.point, Time.deltaTime * 5);
+        }
+
+        // Bottom sensor
+        RaycastHit bottom;
+        if (Physics.Raycast(sensorBottom.transform.position, sensorBottom.transform.forward, out bottom, 0.5f))
+        {
+            isGrounded = true;
+            Vector3 oppositeNormal = -bottom.normal;
+            float forceMagnitude = 5;  // Should be equal to or greater than mass
+            gameObject.GetComponent<Rigidbody>().AddForce(oppositeNormal * forceMagnitude, ForceMode.Impulse);
         }
         else
         {
             isGrounded = false;
         }
 
-        // If not grounded, add downward force
+        // If not grounded, apply gravity
         if (!isGrounded)
         {
-            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
+        else
+        {
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
         }
 
         // Debug Ray
         Debug.DrawRay(sensor.transform.position, sensor.transform.forward * 1.5f, Color.green);
+        Debug.DrawRay(sensorBottom.transform.position, sensorBottom.transform.forward * 0.5f, Color.green);
     }
 }
