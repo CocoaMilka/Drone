@@ -4,6 +4,8 @@ public class ClimbingRobotController : MonoBehaviour
 {
     public bool isSelected = false;
 
+    public Camera secondCamera;
+
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
 
@@ -15,7 +17,11 @@ public class ClimbingRobotController : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetButtonDown("Select"))
+        {
+            secondCamera.enabled = !secondCamera.enabled;
+            Debug.Log("Camera Toggled");
+        }
     }
 
     private void FixedUpdate()
@@ -43,7 +49,7 @@ public class ClimbingRobotController : MonoBehaviour
 
         // Forward sensor
         RaycastHit hit;
-        if (Physics.Raycast(sensor.transform.position, sensor.transform.forward, out hit, 1.5f))
+        if (Physics.Raycast(sensor.transform.position, sensor.transform.forward, out hit, 1f))
         {
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
@@ -52,7 +58,7 @@ public class ClimbingRobotController : MonoBehaviour
 
         // Bottom sensor
         RaycastHit bottom;
-        if (Physics.Raycast(sensorBottom.transform.position, sensorBottom.transform.forward, out bottom, 0.5f))
+        if (Physics.Raycast(sensorBottom.transform.position, sensorBottom.transform.forward, out bottom, 0.2f))
         {
             isGrounded = true;
             Vector3 oppositeNormal = -bottom.normal;
@@ -75,7 +81,7 @@ public class ClimbingRobotController : MonoBehaviour
         }
 
         // Debug Ray
-        Debug.DrawRay(sensor.transform.position, sensor.transform.forward * 1.5f, Color.green);
+        Debug.DrawRay(sensor.transform.position, sensor.transform.forward * .2f, Color.green);
         Debug.DrawRay(sensorBottom.transform.position, sensorBottom.transform.forward * 0.5f, Color.green);
     }
 }
