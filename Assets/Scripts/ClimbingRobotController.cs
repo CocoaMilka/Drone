@@ -49,21 +49,21 @@ public class ClimbingRobotController : MonoBehaviour
 
         // Forward sensor
         RaycastHit hit;
-        if (Physics.Raycast(sensor.transform.position, sensor.transform.forward, out hit, 1f))
+        if (Physics.Raycast(sensor.transform.position, sensor.transform.forward, out hit, 0.3f))
         {
             // Smooth rotation when climbing walls
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
-            transform.position = Vector3.Slerp(transform.position, hit.point, Time.deltaTime * 5);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2);
+            transform.position = Vector3.Slerp(transform.position, hit.point, Time.deltaTime * 2);
         }
 
         // Bottom sensor
         RaycastHit bottom;
-        if (Physics.Raycast(sensorBottom.transform.position, sensorBottom.transform.forward, out bottom, 0.2f))
+        if (Physics.Raycast(sensorBottom.transform.position, sensorBottom.transform.forward, out bottom, 0.4f))
         {
             isGrounded = true;
             Vector3 oppositeNormal = -bottom.normal;
-            float forceMagnitude = 5;  // Should be equal to or greater than mass
+            float forceMagnitude = 3;  // Should be equal to or greater than mass
             gameObject.GetComponent<Rigidbody>().AddForce(oppositeNormal * forceMagnitude, ForceMode.Impulse);
         }
         else
@@ -82,7 +82,7 @@ public class ClimbingRobotController : MonoBehaviour
         }
 
         // Debug Rays
-        Debug.DrawRay(sensor.transform.position, sensor.transform.forward * .2f, Color.green);
-        Debug.DrawRay(sensorBottom.transform.position, sensorBottom.transform.forward * 0.5f, Color.green);
+        Debug.DrawRay(sensor.transform.position, sensor.transform.forward * .3f, Color.green);
+        Debug.DrawRay(sensorBottom.transform.position, sensorBottom.transform.forward * 0.2f, Color.green);
     }
 }
