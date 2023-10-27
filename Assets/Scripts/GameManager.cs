@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     // Selects the robot at robotIndex and deselects all other robots
     public void selectRobot(int robotIndex)
     {
+        Debug.Log("Button Press");
         for (int i = 0; i < robots.Count; i++)
         {
             if (i == robotIndex)
