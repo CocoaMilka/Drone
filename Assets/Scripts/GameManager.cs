@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Set gravity to simplify math
         Physics.gravity = new Vector3(0, -Gravity, 0);
 
         // Initially start paused
