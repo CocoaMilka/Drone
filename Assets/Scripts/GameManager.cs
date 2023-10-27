@@ -14,9 +14,6 @@ public class GameManager : MonoBehaviour
 
     public CinemachineFreeLook followCamera;
 
-    public RobotController drone;
-    public RobotController climbingRobot;
-
     // Fill with all robots to control
     public List<RobotController> robots = new List<RobotController>();
 
@@ -29,7 +26,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         // Inital selected robot, whatever you want user to start with
-        drone.toggleRobotSelection();
+        selectRobot(0);
     }
 
     void Update()
@@ -38,34 +35,9 @@ public class GameManager : MonoBehaviour
         {
             ToggleMenu();
         }
-
-        //RobotSelector();
     }
 
-    /*
-    // Switch Robots
-    void RobotSelector()
-    {
-        // When creating robots, each should contain a controller script with a selector flag. All physics will continue to apply when flag is off but input will be disabled.
-
-        // Select Drone
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            selectRobot(drone);
-            climbingRobot.isSelected = false;
-        }
-
-        // Select Climbing Robot
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            selectRobot(climbingRobot);
-            drone.isSelected = false;
-        }
-
-        // Repeat to add more robots
-    }
-    */
-
+    // Selects the robot at robotIndex and deselects all other robots
     public void selectRobot(int robotIndex)
     {
         for (int i = 0; i < robots.Count; i++)
