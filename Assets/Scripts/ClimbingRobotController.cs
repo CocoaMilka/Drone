@@ -1,11 +1,7 @@
 using UnityEngine;
 
-public class ClimbingRobotController : MonoBehaviour
+public class ClimbingRobotController : RobotController
 {
-    public bool isSelected = false;
-
-    public Camera secondCamera;
-
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
 
@@ -15,26 +11,48 @@ public class ClimbingRobotController : MonoBehaviour
 
     public bool isGrounded = false;
 
+    void Start()
+    {
+        InitializeCamera();
+
+        // Initialize Robot State
+        isOn = false;
+        isSelected = false;
+    }
+
     void Update()
     {
-        if (Input.GetButtonDown("Select"))
+        if (isSelected)
         {
-            secondCamera.enabled = !secondCamera.enabled;
-            Debug.Log("Camera Toggled");
+            // Toggle drone
+            if (Input.GetButtonDown("Start"))
+            {
+                toggleRobotPowerState();
+                Debug.Log(isOn);
+            }
+
+            // Toggle Camera (enable/enable defect detection too)
+            if (Input.GetButtonDown("Select"))
+            {
+                robotCamera.enabled = !robotCamera.enabled;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (isSelected)
+        // Robot must be ON and SELECTED to control
+        if (isOn && isSelected)
         {
             HandleInput();
         }
 
         ApplyPhysics();
+
+        DefectDetection();
     }
 
-    private void HandleInput()
+    public override void HandleInput()
     {
         float move = Input.GetAxis("Vertical_L") * moveSpeed * Time.deltaTime;
         float turn = Input.GetAxis("Horizontal_R") * rotationSpeed * Time.deltaTime;
@@ -43,7 +61,7 @@ public class ClimbingRobotController : MonoBehaviour
         transform.Rotate(0, turn, 0);
     }
 
-    private void ApplyPhysics()
+    public override void ApplyPhysics()
     {
         // Wall sticking and Surface Snapping
 

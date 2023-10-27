@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
 
     public CinemachineFreeLook followCamera;
 
-    public GameObject drone;
-    public GameObject climbingRobot;
+    public RobotController drone;
+    public RobotController climbingRobot;
+
+    // Fill with all robots to control
+    public List<RobotController> robots = new List<RobotController>();
 
     void Start()
     {
@@ -24,6 +27,9 @@ public class GameManager : MonoBehaviour
 
         // Initially start paused
         Time.timeScale = 0f;
+
+        // Inital selected robot, whatever you want user to start with
+        drone.toggleRobotSelection();
     }
 
     void Update()
@@ -33,9 +39,10 @@ public class GameManager : MonoBehaviour
             ToggleMenu();
         }
 
-        RobotSelector();
+        //RobotSelector();
     }
 
+    /*
     // Switch Robots
     void RobotSelector()
     {
@@ -44,24 +51,40 @@ public class GameManager : MonoBehaviour
         // Select Drone
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            drone.GetComponent<DroneController>().isSelected = true;
-            climbingRobot.GetComponent<ClimbingRobotController>().isSelected = false;
-            followCamera.Follow = drone.transform;
-            followCamera.LookAt = drone.transform;
-            Debug.Log("Drone activated!");
+            selectRobot(drone);
+            climbingRobot.isSelected = false;
         }
 
         // Select Climbing Robot
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            drone.GetComponent<DroneController>().isSelected = false;
-            climbingRobot.GetComponent<ClimbingRobotController>().isSelected = true;
-            followCamera.Follow = climbingRobot.transform;
-            followCamera.LookAt = climbingRobot.transform;
-            Debug.Log("Climbing Robot activated!");
+            selectRobot(climbingRobot);
+            drone.isSelected = false;
         }
 
         // Repeat to add more robots
+    }
+    */
+
+    public void selectRobot(int robotIndex)
+    {
+        for (int i = 0; i < robots.Count; i++)
+        {
+            if (i == robotIndex)
+            {
+                robots[i].isSelected = true;
+
+                // Adjust Camera
+                followCamera.Follow = robots[i].transform;
+                followCamera.LookAt = robots[i].transform;
+
+                Debug.Log(robots[i].name + " is selected.");
+            }
+            else
+            {
+                robots[i].isSelected = false;
+            }
+        }
     }
 
 

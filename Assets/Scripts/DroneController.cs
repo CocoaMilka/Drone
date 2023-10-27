@@ -1,13 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DroneController : MonoBehaviour
+public class DroneController : RobotController
 {
-    bool isOn = false;
-    public bool isSelected = true;
-
-    public Camera secondCamera;
-
     // Physics is applied from each propellor, using faux prop locations so model can balance, spinny props are just visual
     public List<GameObject> props;
     public List<GameObject> spinnyProps;
@@ -32,30 +27,30 @@ public class DroneController : MonoBehaviour
 
     void Start()
     {
+        InitializeCamera();
         body = GetComponent<Rigidbody>();
+
+        // Initialize Robot State
+        isOn = false;
+        isSelected = false;
     }
 
     void Update()
     {
-        // Toggle drone
-        if (Input.GetButtonDown("Start"))
+        if (isSelected)
         {
-            if (isOn)
+            // Toggle drone
+            if (Input.GetButtonDown("Start"))
             {
-                stopDrone();
-                Debug.Log("Shutting down drone...");
+                toggleRobotPowerState();
+                Debug.Log(isOn);
             }
-            else
-            {
-                startDrone();
-                Debug.Log("Starting up drone...");
-            }
-        }
 
-        if (Input.GetButtonDown("Select"))
-        {
-            secondCamera.enabled = !secondCamera.enabled;
-            Debug.Log("Camera Toggled");
+            // Toggle Camera (enable/enable defect detection too)
+            if (Input.GetButtonDown("Select"))
+            {
+                robotCamera.enabled = !robotCamera.enabled;
+            }
         }
     }
 
@@ -72,9 +67,12 @@ public class DroneController : MonoBehaviour
             ApplyPhysics();
             ApplyDrag();
         }
+
+        // Might need to fix later
+        DefectDetection();
     }
 
-    private void HandleInput()
+    public override void HandleInput()
     {
         // Read joystick input
         float horizontalInput = Input.GetAxis("Horizontal_R") * horizontalSensitivity;
@@ -91,7 +89,7 @@ public class DroneController : MonoBehaviour
         body.AddTorque(transform.up * horizontalInput * turnTorqueMultiplier);
     }
 
-    private void ApplyPhysics()
+    public override void ApplyPhysics()
     {
         // Apply upwards force from each propeller
         foreach (GameObject prop in props)
@@ -105,16 +103,6 @@ public class DroneController : MonoBehaviour
         Vector3 dragForce = -body.velocity * drag;
         body.AddForce(dragForce);
         body.AddTorque(-body.angularVelocity * drag);
-    }
-
-    void startDrone()
-    {
-        isOn = true;
-    }
-
-    void stopDrone()
-    {
-        isOn = false;
     }
 
     // Purely visual, doesn't work properly tho smh my head
