@@ -9,6 +9,8 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     public GameObject menu;
+    public GameObject HUD;
+
     public float Gravity = 10f;
     private bool isMenuOpen = false;
 
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
 
         // Initially start paused
         Time.timeScale = 0f;
+
+        HUD.SetActive(true);
 
         // Inital selected robot, whatever you want user to start with
         selectRobot(0);
