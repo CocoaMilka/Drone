@@ -1,0 +1,14 @@
+Training Simulator TODO
+
+- Strain Gauge
+	Make interactions manual (ex press A to retrieve data when close)
+	Use Text instead of Graph for data
+	Save data to report
+
+- Gameplay
+	Screenshots (saveable)
+	Score System
+
+- Bridge
+	Decals for defects and road paint
+	
