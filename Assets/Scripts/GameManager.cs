@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using Cinemachine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
     private bool isMenuOpen = false;
 
     public CinemachineFreeLook followCamera;
+
+    // Timer
+    public TextMeshProUGUI timerText;
+    private float timer;
 
     // Fill with all robots to control
     public List<RobotController> robots = new List<RobotController>();
@@ -31,6 +36,10 @@ public class GameManager : MonoBehaviour
 
         // Inital selected robot, whatever you want user to start with
         selectRobot(0);
+
+        // Initialize Timer
+        timer = 0.0f;
+        UpdateTimerDisplay();
     }
 
     void Update()
@@ -39,6 +48,9 @@ public class GameManager : MonoBehaviour
         {
             ToggleMenu();
         }
+
+        timer += Time.deltaTime; // Increase the timer by the time since the last frame
+        UpdateTimerDisplay();
     }
 
     // Selects the robot at robotIndex and deselects all other robots
@@ -95,6 +107,16 @@ public class GameManager : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    // Timer stuffs (for scoring)
+    private void UpdateTimerDisplay()
+    {
+        // Format the timer value into minutes:seconds format and display it
+        int minutes = Mathf.FloorToInt(timer / 60F);
+        int seconds = Mathf.FloorToInt(timer % 60F);
+        int milliseconds = Mathf.FloorToInt((timer * 100F) % 100F);
+        timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
     }
 }
 

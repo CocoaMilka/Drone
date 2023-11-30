@@ -1,7 +1,7 @@
 Training Simulator TODO
 
 - Strain Gauge
-	Make interactions manual (ex press A to retrieve data when close)
+	✅ Make interactions manual (ex press A to retrieve data when close)
 	Use Text instead of Graph for data
 	Save data to report
 
