@@ -7,6 +7,7 @@ TagManager:
   - DroneCam
   - UI Renders
   - Defect
+  - StrainGauge
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrainGaugeInteract : MonoBehaviour
+public class StrainGaugeInteract : Defect
 {
     public GameObject strainDisplay;
     public bool isInteractable;
@@ -13,6 +13,10 @@ public class StrainGaugeInteract : MonoBehaviour
     private void Start()
     {
         strainDisplay.SetActive(false);
+
+        // Set measurement
+        classification = "Strain Gauge";
+        measurement = Random.Range(1f, 3f);
 
         // Add a LineRenderer component to this GameObject if it doesn't already have one
         lineRenderer = gameObject.AddComponent<LineRenderer>();
@@ -31,6 +35,9 @@ public class StrainGaugeInteract : MonoBehaviour
         {
             Debug.Log("interacting...");
             lineRenderer.endColor = Color.yellow;
+
+            // Send to report
+            sendDefectToReport();
         }
 
         if (isInteractable)

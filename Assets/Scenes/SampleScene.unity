@@ -1954,7 +1954,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573397467}
-  m_LocalRotation: {x: 0.3065008, y: 0.40918088, z: -0.14814393, w: 0.84657055}
+  m_LocalRotation: {x: 0.30650076, y: 0.40918094, z: -0.14814393, w: 0.84657055}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3454,7 +3454,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.27080783, y: 0.41502148, z: -0.1308921, w: 0.8586545}
+  m_LocalRotation: {x: 0.27080783, y: 0.41502154, z: -0.13089211, w: 0.8586545}
   m_LocalPosition: {x: 0.85515976, y: 2.807, z: -1.8637463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5480,7 +5480,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443812116}
-  m_LocalRotation: {x: 0.27080783, y: 0.4150215, z: -0.13089208, w: 0.8586545}
+  m_LocalRotation: {x: 0.27080783, y: 0.41502154, z: -0.1308921, w: 0.8586545}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7151,7 +7151,7 @@ GameObject:
   - component: {fileID: 2048899708}
   m_Layer: 0
   m_Name: StrainGauage
-  m_TagString: Untagged
+  m_TagString: StrainGauge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7593,6 +7593,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716b504b384d54f4e98e9886d0f1d7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites: []
+  isChecked: 0
+  classification: unclassified
+  measurement: 0
+  timeCapture: 
+  defectCapture: {fileID: 0}
   strainDisplay: {fileID: 1348358662}
   isInteractable: 0
 --- !u!135 &2104330239
