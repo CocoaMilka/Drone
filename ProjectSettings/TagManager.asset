@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DroneCam
   - UI Renders
+  - Defect
   layers:
   - Default
   - TransparentFX

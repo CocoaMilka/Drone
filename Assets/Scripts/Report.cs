@@ -10,10 +10,11 @@ public class Report : MonoBehaviour
 
     // Visual representation of report
     public GameObject ReportPrefab;
+    public GameObject defectCollection;
     public GameObject defectPrefab;
 
     // Prefab transform
-    Vector3 position = new Vector3(0, 0, 0);
+    float offset = 0;
     Quaternion rotation = Quaternion.identity;
 
     public Vector3 shownPosition = new Vector3(0, 300, 0);
@@ -57,11 +58,20 @@ public class Report : MonoBehaviour
         }
     }
 
-    void updateReport()
+    public void updateReport()
     {
+        // Clean report list before reprinting (prevents duplicates)
+        foreach (Transform child in defectCollection.transform)
+        {
+            Destroy(child.gameObject);
+
+            // reset offset
+            offset = 0;
+        }
+
         foreach (Defect defect in defects)
         {
-            GameObject currentDefect = Instantiate(defectPrefab, position, rotation);
+            GameObject currentDefect = Instantiate(defectPrefab, new Vector3(defectCollection.transform.position.x, defectCollection.transform.position.y + 100 + offset, 0), rotation, defectCollection.transform);
 
             // Assign defect.classification to DefectName TextMeshPro component
             TextMeshProUGUI defectNameText = currentDefect.transform.Find("DefectName").GetComponent<TextMeshProUGUI>();
@@ -73,13 +83,13 @@ public class Report : MonoBehaviour
 
             // Assign defect.timeCapture to DefectTime TextMeshPro component
             TextMeshProUGUI defectTimeText = currentDefect.transform.Find("DefectTime").GetComponent<TextMeshProUGUI>();
-            defectTimeText.text = defect.timeCapture.ToString(); // Assuming timeCapture is a DateTime or similar
+            defectTimeText.text = "Time Captured: " + defect.timeCapture.ToString(); // Assuming timeCapture is a DateTime or similar
 
             // Assign defect.measurement to DefectMeasurement TextMeshPro component
             TextMeshProUGUI defectMeasurementText = currentDefect.transform.Find("DefectMeasurement").GetComponent<TextMeshProUGUI>();
-            defectMeasurementText.text = defect.measurement.ToString();
+            defectMeasurementText.text = "Measurement: " + defect.measurement.ToString() + "cm";
 
-            position = new Vector3(0, position.y + 100, 0);
+            offset -= 300;
         }
     }
 

@@ -27,12 +27,6 @@ public class StrainGaugeInteract : MonoBehaviour
 
     private void Update()
     {
-        strainDisplay.transform.rotation = Camera.main.transform.rotation;
-
-        // Display slightly below robot
-        strainDisplay.transform.position = collidedObjectTransform.position - new Vector3(0, 2, 0);
-
-
         if (isInteractable && Input.GetButtonDown("Interact"))
         {
             Debug.Log("interacting...");
@@ -41,6 +35,9 @@ public class StrainGaugeInteract : MonoBehaviour
 
         if (isInteractable)
         {
+            strainDisplay.transform.rotation = Camera.main.transform.rotation;
+            strainDisplay.transform.position = collidedObjectTransform.position - new Vector3(0, 2, 0);
+
             lineRenderer.SetPosition(0, gameObject.transform.position);
             lineRenderer.SetPosition(1, collidedObjectTransform.transform.position);
             CreateLightningEffect();

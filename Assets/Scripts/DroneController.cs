@@ -82,7 +82,7 @@ public class DroneController : RobotController
 
         // Update force and torque based on input
         baseForce = 10 + verticalInput * verticalForceMultiplier;
-        Debug.Log(baseForce);
+        //Debug.Log(baseForce);
 
         body.AddForce(transform.forward * forwardInput * forwardForceMultiplier);
         body.AddForce(transform.right * leftRightInput * forwardForceMultiplier);

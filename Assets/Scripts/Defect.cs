@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Defect : MonoBehaviour
 {
     // Contains defect variations
-    public List<Sprite> sprites = new List<Sprite>();
+    [SerializeField] List<Sprite> sprites = new List<Sprite>();
 
     public bool isChecked = false;
 
@@ -23,5 +23,8 @@ public abstract class Defect : MonoBehaviour
         isChecked = true;
         timeCapture = GameManager.Instance.timer.ToString();
         Report.Instance.defects.Add(this);
+        Report.Instance.updateReport();
+
+        Debug.Log("Defect Sent to Report!");
     }
 }

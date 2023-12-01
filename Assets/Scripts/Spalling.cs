@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Spalling : Defect
 {
-    [SerializeField] List<Sprite> sprites = new List<Sprite>();
-
     // Start is called before the first frame update
     void Start()
     {
