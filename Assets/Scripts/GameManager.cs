@@ -19,10 +19,28 @@ public class GameManager : MonoBehaviour
 
     // Timer
     public TextMeshProUGUI timerText;
-    private float timer;
+    public float timer;
 
     // Fill with all robots to control
     public List<RobotController> robots = new List<RobotController>();
+
+    // Create singleton
+    public static GameManager Instance { get; private set; }
+
+    void Awake()
+    {
+        // If an instance already exists and it's not this one, destroy this one
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        // Optionally, if you want this singleton to persist across scenes, uncomment the following line
+        // DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {

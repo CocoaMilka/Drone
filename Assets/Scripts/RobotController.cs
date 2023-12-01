@@ -41,7 +41,7 @@ public abstract class RobotController : MonoBehaviour
                 Defect hitDefect = defect.collider.gameObject.GetComponent<Defect>();
                 if (hitDefect != null)
                 {
-                    hitDefect.Check();
+                    // hitDefect.Check(); UPDATE THIS
                 }
             }
         }

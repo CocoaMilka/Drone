@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Defect : MonoBehaviour
+public abstract class Defect : MonoBehaviour
 {
+    // Contains defect variations
+    public List<Sprite> sprites = new List<Sprite>();
+
     public bool isChecked = false;
-    GameObject check;
-    void Start()
+
+    // Defect measurements
+    public string classification = "unclassified";
+    public float measurement = 0.0f;
+    public string timeCapture;
+    public Sprite defectCapture;
+
+    // Send defect instance to report list for display
+    public virtual void sendDefectToReport()
     {
-        check = transform.GetChild(0).gameObject;
-    }
-    
-    public void Check()
-    {
+        // Capture time defect was scanned
         isChecked = true;
-        check.SetActive(isChecked);
+        timeCapture = GameManager.Instance.timer.ToString();
+        Report.Instance.defects.Add(this);
     }
 }
