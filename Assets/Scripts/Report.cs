@@ -17,8 +17,8 @@ public class Report : MonoBehaviour
     float offset = 0;
     Quaternion rotation = Quaternion.identity;
 
-    public Vector3 shownPosition = new Vector3(0, 300, 0);
-    public Vector3 hiddenPosition = new Vector3(0, -500, 0);
+    [SerializeField] Vector3 shownPosition = new Vector3(0, 300, 0);
+    [SerializeField] Vector3 hiddenPosition = new Vector3(0, -500, 0);
 
     private bool isReportVisible = false;
 
@@ -71,7 +71,7 @@ public class Report : MonoBehaviour
 
         foreach (Defect defect in defects)
         {
-            GameObject currentDefect = Instantiate(defectPrefab, new Vector3(defectCollection.transform.position.x, defectCollection.transform.position.y + 100 + offset, 0), rotation, defectCollection.transform);
+            GameObject currentDefect = Instantiate(defectPrefab, new Vector3(defectCollection.transform.position.x, defectCollection.transform.position.y + offset, 0), rotation, defectCollection.transform);
 
             // Assign defect.classification to DefectName TextMeshPro component
             TextMeshProUGUI defectNameText = currentDefect.transform.Find("DefectName").GetComponent<TextMeshProUGUI>();

@@ -8,6 +8,6 @@ public class Spalling : Defect
     void Start()
     {
         classification = "Spalling";
-        measurement = Random.Range(1, 3);
+        measurement = Random.Range(1f, 3f);
     }
 }
