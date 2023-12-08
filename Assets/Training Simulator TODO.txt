@@ -1,14 +1,58 @@
 Training Simulator TODO
 
+Human-Centered Automated Bridge Inspection Training Simulator ( HABITS )
+
+January 6th Deadline ( Day of presentation )
+
 - Strain Gauge
 	✅ Make interactions manual (ex press A to retrieve data when close)
-	Use Text instead of Graph for data
-	Save data to report
+	✅ Use Text instead of Graph for data
+	✅ Save data to report
+
+- Defects
+	Decals for defects ( Transparent with normals )
+	Make interactions manual
+		- User can take photos on button press
+		- Identification of pictures for scoring ( reference gameplay section )
+	Decal variations
+	Random decal placement per run
+
+- Report
+	Update visuals
+		- scrollable
+		- resizeable
+	Prefabs UI alts for report
+		- strain gauge
+		- defects ( spalling, cracks, etc )
+		- custom user field
+	( unsure ) save report to file ?
 
 - Gameplay
 	Screenshots (saveable)
 	Score System
+		- points per scan
+		- time
+		- Quality of photo ( more points when camera perpendicular )
+		- Danger ( Flying too fast too close to objects )
+	Tutorial
+	Update controls
+	Quick robot swap
+	Robot view
+	Additional robots ( can add more robots to scene ) 
+	Visuals ( lighting , UI )
+
+- Drone
+
+- Climbing Robot
+	Thickness measurement
+	Rely less on camera functionality ( possibly remove )
 
 - Bridge
-	Decals for defects and road paint
+	Possible retexturing
+	Minor Mesh fixes
+
+- Refactor
+	✅ Strain gauge 
+	✅ defect base class (spalling, cracks, etc)
+	Drone to Report interaction ( See gauge vs defect interaction )
 	
