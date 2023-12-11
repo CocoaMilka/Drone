@@ -71,7 +71,17 @@ public class Report : MonoBehaviour
 
         foreach (Defect defect in defects)
         {
-            GameObject currentDefect = Instantiate(defectPrefab, new Vector3(defectCollection.transform.position.x, defectCollection.transform.position.y + offset, 0), rotation, defectCollection.transform);
+            //GameObject currentDefect = Instantiate(defectPrefab, new Vector3(defectCollection.transform.position.x, defectCollection.transform.position.y + offset, 0), rotation, defectCollection.transform);
+
+            RectTransform rectTransform = defectCollection.GetComponent<RectTransform>();
+            Vector2 centerPosition = new Vector2(
+                rectTransform.position.x + rectTransform.rect.width * (0.5f - rectTransform.pivot.x),
+                rectTransform.position.y + rectTransform.rect.height * (0.5f - rectTransform.pivot.y)
+            );
+
+
+            GameObject currentDefect = Instantiate(defectPrefab, new Vector3(centerPosition.x, centerPosition.y + offset, 0), rotation, defectCollection.transform);
+
 
             // Assign defect.classification to DefectName TextMeshPro component
             TextMeshProUGUI defectNameText = currentDefect.transform.Find("DefectName").GetComponent<TextMeshProUGUI>();

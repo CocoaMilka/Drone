@@ -47,17 +47,19 @@ public class GameManager : MonoBehaviour
         // Set gravity to simplify math
         Physics.gravity = new Vector3(0, -Gravity, 0);
 
-        // Initially start paused
-        Time.timeScale = 0f;
-
         HUD.SetActive(true);
-
-        // Inital selected robot, whatever you want user to start with
-        selectRobot(0);
 
         // Initialize Timer
         timer = 0.0f;
         UpdateTimerDisplay();
+
+        // Initially start paused
+        Time.timeScale = 0f;
+
+        // Inital selected robot, whatever you want user to start with
+            // Actually, no robot set initally cause I cannot find where this bug is smh
+            // Camera is set to look at empty transform and no robot selected initially
+        //selectRobot(0);
     }
 
     void Update()

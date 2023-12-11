@@ -16,6 +16,7 @@ January 6th Deadline ( Day of presentation )
 		- Identification of pictures for scoring ( reference gameplay section )
 	Decal variations
 	Random decal placement per run
+	FIX DEFECT COLLISION, DRONE SHOULD NOT CRASH INTO HITBOX
 
 - Report
 	Update visuals
