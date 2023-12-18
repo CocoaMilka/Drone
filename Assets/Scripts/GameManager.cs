@@ -17,9 +17,11 @@ public class GameManager : MonoBehaviour
 
     public CinemachineFreeLook followCamera;
 
-    // Timer
+    // Timer and scoring
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI scoreText;
     public float timer;
+    public int score;
 
     // Fill with all robots to control
     public List<RobotController> robots = new List<RobotController>();
@@ -52,9 +54,10 @@ public class GameManager : MonoBehaviour
 
         HUD.SetActive(true);
 
-        // Initialize Timer
+        // Initialize Timer and Score
         timer = 0.0f;
         UpdateTimerDisplay();
+        score = 0;
 
         // Initially start paused
         Time.timeScale = 0f;
@@ -74,6 +77,8 @@ public class GameManager : MonoBehaviour
 
         timer += Time.deltaTime; // Increase the timer by the time since the last frame
         UpdateTimerDisplay();
+
+        scoreText.text = "Score: " + score;
     }
 
     // Selects the robot at robotIndex and deselects all other robots
@@ -99,7 +104,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 
     void ToggleMenu()
     {

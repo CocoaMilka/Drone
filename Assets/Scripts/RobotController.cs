@@ -30,6 +30,7 @@ public abstract class RobotController : MonoBehaviour
         display.texture = renderTexture;
     }
 
+    // TLDR; Fancy Screenshot
     public void CaptureFrame()
     {
         // Ensure the renderTexture is already assigned and initialized
@@ -62,24 +63,51 @@ public abstract class RobotController : MonoBehaviour
     // Call in Update
     public void DefectDetection()
     {
-        if (robotCamera.enabled)
+        if (!robotCamera.enabled)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 4.0f))
+            Debug.LogError("Robot Error: Cannot take picture when camera is disabled.");
+            return;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 4.0f))
+        {
+            Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 4.0f, Color.yellow);
+
+            // Check if the hit object has the "Defect" tag
+            if (hit.collider.gameObject.tag == "Defect")
             {
-                Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 4.0f, Color.yellow);
+                var defectObject = hit.collider.gameObject.GetComponent<Defect>();
 
-                // Check if the hit object has the "Defect" tag
-                if (hit.collider.gameObject.tag == "Defect")
+                if (defectObject != null && !defectObject.isChecked)
                 {
-                    var defectObject = hit.collider.gameObject.GetComponent<Defect>();
+                    CaptureFrame();
 
-                    if (defectObject != null && !defectObject.isChecked)
+                    // Maximum distance at which points are awarded
+                    float maxDistance = 10.0f;
+                    int maxPoints = 100;
+                    float distance = Vector3.Distance(cameraTransform.position, hit.collider.transform.position);
+
+                    if (distance <= maxDistance)
                     {
-                        CaptureFrame();
-                        defectObject.defectCapture = defectCaptureSprite;
-                        defectObject.sendDefectToReport();
+                        // Linear scale: Closer distances give more points
+                        float scoreMultiplier = (maxDistance - distance) / maxDistance;
+                        int additionalPoints = Mathf.RoundToInt(maxPoints * scoreMultiplier);
+
+                        // Add points to the score
+                        GameManager.Instance.score += additionalPoints;
+
+                        // Optional: Debug Log for testing
+                        Debug.Log("Added " + additionalPoints + " points based on distance. New score: " + GameManager.Instance.score);
                     }
+                    else
+                    {
+                        Debug.Log("No points added, defect is too far away.");
+                    }
+
+
+                    defectObject.defectCapture = defectCaptureSprite;
+                    defectObject.sendDefectToReport();
                 }
             }
         }

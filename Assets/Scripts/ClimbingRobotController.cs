@@ -36,6 +36,8 @@ public class ClimbingRobotController : RobotController
             {
                 robotCamera.enabled = !robotCamera.enabled;
             }
+
+            // ADD CAMERA CAPTURE HERE (IF CLIMBING ROBOT WILL TAKE PICTURES PROLLY NOT CAUSE THICKNESS MEASUREMENT)
         }
     }
 
@@ -48,8 +50,6 @@ public class ClimbingRobotController : RobotController
         }
 
         ApplyPhysics();
-
-        DefectDetection();
     }
 
     public override void HandleInput()

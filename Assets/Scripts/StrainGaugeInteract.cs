@@ -35,6 +35,7 @@ public class StrainGaugeInteract : Defect
         {
             Debug.Log("interacting...");
             lineRenderer.endColor = Color.yellow;
+            isChecked = true;
 
             // Send to report
             sendDefectToReport();

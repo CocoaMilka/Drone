@@ -51,6 +51,13 @@ public class DroneController : RobotController
             {
                 robotCamera.enabled = !robotCamera.enabled;
             }
+
+            // Take pictures of Defects
+            if (Mathf.Round(Input.GetAxisRaw("Capture")) > 0)   // only way to get triggers to work?? Negative is LT, Positive is RT
+            {
+                Debug.Log("Say Cheese! Taking Picture!");
+                DefectDetection();
+            }
         }
     }
 
@@ -67,9 +74,6 @@ public class DroneController : RobotController
             ApplyPhysics();
             ApplyDrag();
         }
-
-        // Might need to fix later
-        DefectDetection();
     }
 
     public override void HandleInput()

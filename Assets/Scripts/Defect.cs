@@ -20,8 +20,10 @@ public abstract class Defect : MonoBehaviour
     public virtual void sendDefectToReport()
     {
         // Capture time defect was scanned
-        isChecked = true;
+        isChecked = true;   // Ensure defect can't be scanned twice
         timeCapture = GameManager.Instance.timer.ToString();
+        GameManager.Instance.score += 100; // Base 100 points for capturing a defect, extra given in photo scoring
+
         Report.Instance.defects.Add(this);
         Report.Instance.updateReport();
 
@@ -42,13 +44,15 @@ public abstract class Defect : MonoBehaviour
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
         if (GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds))
         {
-            print("The object" + gameObject.name + "has appeared");
-            GetComponent<MeshRenderer>().enabled = true;
+            // Defect is visible by drone
+            //print("The object" + gameObject.name + "has appeared");
+            transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            print("The object" + gameObject.name + "has disappeared");
-            GetComponent<MeshRenderer>().enabled = false;
+            // Defect is not visible by drone
+            //print("The object" + gameObject.name + "has disappeared");
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }
