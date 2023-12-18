@@ -10,4 +10,10 @@ public class Spalling : Defect
         classification = "Spalling";
         measurement = Random.Range(1f, 3f);
     }
+
+    private void Update()
+    {
+        // Check whether current robot can see defect
+        whileInCameraView(GameManager.Instance.activeRobot.robotCamera);
+    }
 }

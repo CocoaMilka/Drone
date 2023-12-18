@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     // Fill with all robots to control
     public List<RobotController> robots = new List<RobotController>();
 
+    // Global access to currently active robot
+    public RobotController activeRobot;
+
     // Create singleton
     public static GameManager Instance { get; private set; }
 
@@ -87,6 +90,7 @@ public class GameManager : MonoBehaviour
                 followCamera.Follow = robots[i].transform;
                 followCamera.LookAt = robots[i].transform;
 
+                activeRobot = robots[i];
                 Debug.Log(robots[i].name + " is selected.");
             }
             else

@@ -27,4 +27,28 @@ public abstract class Defect : MonoBehaviour
 
         Debug.Log("Defect Sent to Report!");
     }
+
+    // Determine whether defect is currently visible to active robot's camera
+    public virtual void whileInCameraView(Camera camera)
+    {
+        /*
+        if (camera == null || GetComponent<Collider>() == null || GetComponent<MeshRenderer>() == null)
+        {
+            Debug.LogError("Missing component: Camera, Collider, or MeshRenderer is null.");
+            return;
+        }
+        */
+
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+        if (GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds))
+        {
+            print("The object" + gameObject.name + "has appeared");
+            GetComponent<MeshRenderer>().enabled = true;
+        }
+        else
+        {
+            print("The object" + gameObject.name + "has disappeared");
+            GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
 }
