@@ -17,7 +17,6 @@ January 6th Deadline ( Day of presentation )
 	✅	- User can take photos on button press
 		- Identification of pictures for scoring ( reference gameplay section )
 	Decal variations
-	Random decal placement per run
 	FIX DEFECT COLLISION, DRONE SHOULD NOT CRASH INTO HITBOX
 
 - Report
@@ -47,7 +46,9 @@ January 6th Deadline ( Day of presentation )
 
 - Drone
 	Fix propeller animation
-	Dust particles when near ground
+	✅ Dust particles when near ground
+		- Fix bug when turn off near ground
+		- update particles
 
 - Climbing Robot
 	Thickness measurement

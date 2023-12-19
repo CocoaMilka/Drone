@@ -70,9 +70,9 @@ public abstract class RobotController : MonoBehaviour
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 4.0f))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, 10.0f))
         {
-            Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 4.0f, Color.yellow);
+            Debug.DrawRay(cameraTransform.position, cameraTransform.forward * 10.0f, Color.yellow);
 
             // Check if the hit object has the "Defect" tag
             if (hit.collider.gameObject.tag == "Defect")
