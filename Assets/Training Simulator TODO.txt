@@ -16,13 +16,13 @@ January 6th Deadline ( Day of presentation )
 	Make interactions manual
 	✅	- User can take photos on button press
 		- Identification of pictures for scoring ( reference gameplay section )
-	Decal variations
+	❌ Decal variations ( Need images )
 	FIX DEFECT COLLISION, DRONE SHOULD NOT CRASH INTO HITBOX
 
 - Report
 	Update visuals
 	✅	- scrollable
-		- fix text bug ( should be sharp )
+	✅	- fix text bug ( should be sharp )
 	Prefabs UI alts for report
 		- strain gauge
 		- defects ( spalling, cracks, etc )
