@@ -7,6 +7,8 @@ public class StrainGaugeInteract : Defect
     public GameObject strainDisplay;
     public bool isInteractable;
 
+    public Material signalMat;
+
     private Transform collidedObjectTransform;
 
     private LineRenderer lineRenderer;
@@ -24,7 +26,7 @@ public class StrainGaugeInteract : Defect
         // Optional: Customize the appearance of the line here
         lineRenderer.startWidth = 0.01f;
         lineRenderer.endWidth = 0.01f;
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default")); // Use a simple shader
+        lineRenderer.material = signalMat;
         lineRenderer.startColor = Color.white;
         lineRenderer.endColor = Color.white;
     }

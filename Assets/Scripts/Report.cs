@@ -92,11 +92,11 @@ public class Report : MonoBehaviour
             defectImage.sprite = defect.defectCapture; // Assuming defectCapture is of type Sprite
 
             // Assign defect.timeCapture to DefectTime TextMeshPro component
-            TextMeshProUGUI defectTimeText = currentDefect.transform.Find("DefectTime").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI defectTimeText = currentDefect.transform.Find("Data Panel/content/DefectTime").GetComponent<TextMeshProUGUI>();
             defectTimeText.text = "Time Captured: " + defect.timeCapture.ToString(); // Assuming timeCapture is a DateTime or similar
 
             // Assign defect.measurement to DefectMeasurement TextMeshPro component
-            TextMeshProUGUI defectMeasurementText = currentDefect.transform.Find("DefectMeasurement").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI defectMeasurementText = currentDefect.transform.Find("Data Panel/content/DefectMeasurement").GetComponent<TextMeshProUGUI>();
             defectMeasurementText.text = "Measurement: " + defect.measurement.ToString() + "cm";
 
             offset -= 300;

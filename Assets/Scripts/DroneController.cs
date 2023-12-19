@@ -110,6 +110,9 @@ public class DroneController : RobotController
             //Debug.DrawRay(transform.position, -transform.up * 1.5f, Color.green);
             //Debug.Log("Near Ground");
 
+            // Move the dustParticles to the collision point
+            dustParticles.transform.position = bottom.point;
+
             // Start the particle system if it's not already playing
             if (!dustParticles.isPlaying)
             {
