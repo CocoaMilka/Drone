@@ -31,18 +31,22 @@ public class StrainGaugeInteract : Defect
 
     private void Update()
     {
-        if (isInteractable && Input.GetButtonDown("Interact"))
+        // This code needs to be refactored so bad but no time :(
+
+        // Interaction handling
+        if (isInteractable && !isChecked && Input.GetButtonDown("Interact"))
         {
             Debug.Log("interacting...");
             lineRenderer.endColor = Color.yellow;
             isChecked = true;
 
-            // Send to report
             sendDefectToReport();
         }
 
-        if (isInteractable)
+        // Graphics Handling
+        if (isInteractable && !isChecked)
         {
+            strainDisplay.SetActive(true);
             strainDisplay.transform.rotation = Camera.main.transform.rotation;
             strainDisplay.transform.position = collidedObjectTransform.position - new Vector3(0, 2, 0);
 
@@ -53,6 +57,7 @@ public class StrainGaugeInteract : Defect
         }
         else
         {
+            strainDisplay.SetActive(false);
             lineRenderer.enabled = false;
         }
     }
@@ -61,13 +66,13 @@ public class StrainGaugeInteract : Defect
     {
         isInteractable = true;
         collidedObjectTransform = other.transform; // Store the transform of the collided object
-        strainDisplay.SetActive(true);
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
         isInteractable = false;
-        strainDisplay.SetActive(false);
+        
     }
 
     private void CreateLightningEffect()

@@ -4,6 +4,8 @@ Human-Centered Automated Bridge Inspection Training Simulator ( HABITS )
 
 January 6th Deadline ( Day of presentation )
 
+- Title Screen
+
 - Strain Gauge
 	✅ Make interactions manual (ex press A to retrieve data when close)
 	✅ Use Text instead of Graph for data
@@ -20,7 +22,8 @@ January 6th Deadline ( Day of presentation )
 
 - Report
 	Update visuals
-		- scrollable
+	✅	- scrollable
+		- fix text bug ( should be sharp )
 		- resizeable
 	Prefabs UI alts for report
 		- strain gauge
@@ -31,7 +34,7 @@ January 6th Deadline ( Day of presentation )
 - Gameplay
 	Screenshots (saveable)
 	Score System
-		- points per scan
+	✅	- points per scan
 		- time
 		- Quality of photo ( more points when camera perpendicular )
 		- Danger ( Flying too fast too close to objects )
@@ -40,9 +43,11 @@ January 6th Deadline ( Day of presentation )
 	Quick robot swap
 	Robot view
 	Additional robots ( can add more robots to scene ) 
-	Visuals ( lighting , UI )
+	✅ Visuals ( lighting , UI )
 
 - Drone
+	Fix propeller animation
+	Dust particles when near ground
 
 - Climbing Robot
 	Thickness measurement
@@ -55,5 +60,5 @@ January 6th Deadline ( Day of presentation )
 - Refactor
 	✅ Strain gauge 
 	✅ defect base class (spalling, cracks, etc)
-	Drone to Report interaction ( See gauge vs defect interaction )
+	✅ Drone to Report interaction ( See gauge vs defect interaction )
 	

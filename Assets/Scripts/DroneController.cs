@@ -7,6 +7,8 @@ public class DroneController : RobotController
     public List<GameObject> props;
     public List<GameObject> spinnyProps;
 
+    public ParticleSystem dustParticles;
+
     public float maxPropellerTorque = 1000f; // Maximum torque to apply to propellers
     public float torqueIncreaseRate = 500f;  // Rate at which torque increases to start the propellers
     public float torqueDecreaseRate = 200f;  // Rate at which torque decreases to slow down the propellers
@@ -100,6 +102,28 @@ public class DroneController : RobotController
         {
             body.AddForceAtPosition(transform.TransformDirection(Vector3.up) * baseForce / props.Count, prop.transform.position);
         }
+
+        // Bottom sensor for spawning dust particles
+        RaycastHit bottom;
+        if (Physics.Raycast(transform.position, -transform.up, out bottom, 1.5f))
+        {
+            //Debug.DrawRay(transform.position, -transform.up * 1.5f, Color.green);
+            //Debug.Log("Near Ground");
+
+            // Start the particle system if it's not already playing
+            if (!dustParticles.isPlaying)
+            {
+                dustParticles.Play();
+            }
+        }
+        else
+        {
+            // Stop the particle system if it's playing
+            if (dustParticles.isPlaying)
+            {
+                dustParticles.Stop();
+            }
+        }
     }
     private void ApplyDrag()
     {
@@ -118,7 +142,7 @@ public class DroneController : RobotController
             if (propRigidbody != null)
             {
                 // Gradually increase torque to start the propellers
-                float currentTorque = Mathf.Min(maxPropellerTorque, propRigidbody.angularDrag + torqueIncreaseRate * Time.deltaTime);
+                float currentTorque = Mathf.Min(maxPropellerTorque, propRigidbody.angularDrag + torqueIncreaseRate * Time.fixedDeltaTime);
                 propRigidbody.AddTorque(prop.transform.up * currentTorque, ForceMode.Acceleration);
 
                 // Gradually decrease torque to slow down the propellers
