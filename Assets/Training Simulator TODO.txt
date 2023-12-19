@@ -12,7 +12,7 @@ January 6th Deadline ( Day of presentation )
 - Defects
 	Decals for defects ( Transparent with normals )
 	Make interactions manual
-		- User can take photos on button press
+	✅	- User can take photos on button press
 		- Identification of pictures for scoring ( reference gameplay section )
 	Decal variations
 	Random decal placement per run
