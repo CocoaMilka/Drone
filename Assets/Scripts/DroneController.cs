@@ -1,4 +1,7 @@
+using Cinemachine;
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DroneController : RobotController
@@ -6,6 +9,8 @@ public class DroneController : RobotController
     // Physics is applied from each propellor, using faux prop locations so model can balance, spinny props are just visual
     public List<GameObject> props;
     public List<GameObject> spinnyProps;
+
+    public GameObject virtualCam;
 
     public ParticleSystem dustParticles;
 
@@ -46,12 +51,27 @@ public class DroneController : RobotController
             {
                 toggleRobotPowerState();
                 Debug.Log(isOn);
+
+                // Turn off Particles, messy solution
+                dustParticles.Stop();
             }
 
-            // Toggle Camera (enable/enable defect detection too)
+            // Toggle Camera (enable/disable defect detection too)
             if (Input.GetButtonDown("Select"))
             {
                 robotCamera.enabled = !robotCamera.enabled;
+            }
+
+            // Aim Camera
+            if (Mathf.Round(Input.GetAxisRaw("Capture")) < 0)
+            {
+                virtualCam.GetComponent<CinemachineVirtualCamera>().Priority = 10;
+                CameraFrame.SetActive(true);
+            }
+            else
+            {
+                virtualCam.GetComponent<CinemachineVirtualCamera>().Priority = 0;
+                CameraFrame.SetActive(false);
             }
 
             // Take pictures of Defects
@@ -67,11 +87,12 @@ public class DroneController : RobotController
     {
         if (isOn)
         {
-            // If drone is selected, then user can control (handled in GameManager)
+            // If drone is selected, then user can control (selection handled in GameManager)
             if (isSelected) 
             {
                 HandleInput();
             }
+
             SpinPropellers();
             ApplyPhysics();
             ApplyDrag();
@@ -88,7 +109,6 @@ public class DroneController : RobotController
 
         // Update force and torque based on input
         baseForce = 10 + verticalInput * verticalForceMultiplier;
-        //Debug.Log(baseForce);
 
         body.AddForce(transform.forward * forwardInput * forwardForceMultiplier);
         body.AddForce(transform.right * leftRightInput * forwardForceMultiplier);
@@ -110,10 +130,9 @@ public class DroneController : RobotController
             //Debug.DrawRay(transform.position, -transform.up * 1.5f, Color.green);
             //Debug.Log("Near Ground");
 
-            // Move the dustParticles to the collision point
+            // Move the dustParticles to the collision point so they emit from ground
             dustParticles.transform.position = bottom.point;
 
-            // Start the particle system if it's not already playing
             if (!dustParticles.isPlaying)
             {
                 dustParticles.Play();
@@ -128,9 +147,10 @@ public class DroneController : RobotController
             }
         }
     }
+
+    // Apply drag to slow down the drone when no input is present
     private void ApplyDrag()
     {
-        // Apply drag to slow down the drone when no input is present
         Vector3 dragForce = -body.velocity * drag;
         body.AddForce(dragForce);
         body.AddTorque(-body.angularVelocity * drag);

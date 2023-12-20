@@ -60,4 +60,5 @@ January 6th Deadline ( Day of presentation )
 	✅ Strain gauge 
 	✅ defect base class (spalling, cracks, etc)
 	✅ Drone to Report interaction ( See gauge vs defect interaction )
+	USE EVENTS** ( not important )
 	

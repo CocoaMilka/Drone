@@ -494,7 +494,6 @@ GameObject:
   - component: {fileID: 5080922734827225234}
   - component: {fileID: 5080922734827225235}
   - component: {fileID: 6701397955914953501}
-  - component: {fileID: 277776846661304732}
   m_Layer: 5
   m_Name: DefectImage
   m_TagString: Untagged
@@ -519,8 +518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 398, y: 0}
-  m_SizeDelta: {x: -900, y: 0}
+  m_AnchoredPosition: {x: 393.10217, y: 0}
+  m_SizeDelta: {x: -786.2043, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5080922734827225234
 CanvasRenderer:
@@ -575,20 +574,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
---- !u!114 &277776846661304732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5080922734827225245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 1
-  m_AspectRatio: 1
 --- !u!1 &5080922734999291928
 GameObject:
   m_ObjectHideFlags: 0

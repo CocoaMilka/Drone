@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 using TMPro;
 
+// This code may not be the yolk of an egg, but it runs
 public class GameManager : MonoBehaviour
 {
     public GameObject menu;

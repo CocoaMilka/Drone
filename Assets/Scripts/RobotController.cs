@@ -8,6 +8,7 @@ public abstract class RobotController : MonoBehaviour
 {
     public bool isSelected;
     public bool isOn;
+    public GameObject CameraFrame;
 
     // Robot Vision
     public Camera robotCamera;
