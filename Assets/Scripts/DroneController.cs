@@ -1,5 +1,6 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class DroneController : RobotController
     public List<GameObject> spinnyProps;
 
     public GameObject virtualCam;
+    public Light Flash;
 
     public ParticleSystem dustParticles;
 
@@ -63,7 +65,7 @@ public class DroneController : RobotController
             }
 
             // Aim Camera
-            if (Mathf.Round(Input.GetAxisRaw("Capture")) < 0)
+            if (Mathf.Round(Input.GetAxisRaw("Aim")) < 0) // only way to get triggers to work?? Negative is LT, Positive is RT
             {
                 virtualCam.GetComponent<CinemachineVirtualCamera>().Priority = 10;
                 CameraFrame.SetActive(true);
@@ -75,9 +77,10 @@ public class DroneController : RobotController
             }
 
             // Take pictures of Defects
-            if (Mathf.Round(Input.GetAxisRaw("Capture")) > 0)   // only way to get triggers to work?? Negative is LT, Positive is RT
+            if (Input.GetButtonDown("Capture"))   
             {
                 Debug.Log("Say Cheese! Taking Picture!");
+                TriggerFlash();
                 DefectDetection();
             }
         }
@@ -176,5 +179,25 @@ public class DroneController : RobotController
                 }
             }
         }
+    }
+
+    public void TriggerFlash()
+    {
+        if (Flash != null)
+        {
+            StartCoroutine(FlashRoutine());
+        }
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        // Turn on the flash
+        Flash.enabled = true;
+
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.1f); // Adjust duration as needed
+
+        // Turn off the flash
+        Flash.enabled = false;
     }
 }

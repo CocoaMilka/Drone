@@ -4,6 +4,9 @@ Human-Centered Automated Bridge Inspection Training Simulator ( HABITS )
 
 January 6th Deadline ( Day of presentation )
 
+✅ - Done
+🟠 - Not done but Optional/Not important
+
 - Title Screen
 
 - Strain Gauge * PREFAB REFACTOR
@@ -16,14 +19,14 @@ January 6th Deadline ( Day of presentation )
 	Make interactions manual
 	✅	- User can take photos on button press
 		- Identification of pictures for scoring ( reference gameplay section )
-	❌ Decal variations ( Need images )
+	🟠 Decal variations ( Need images )
 	FIX DEFECT COLLISION, DRONE SHOULD NOT CRASH INTO HITBOX
 
 - Report
 	Update visuals
 	✅	- scrollable
 	✅	- fix text bug ( should be sharp )
-	Prefabs UI alts for report
+	🟠Prefabs UI alts for report
 		- strain gauge
 		- defects ( spalling, cracks, etc )
 		- custom user field
@@ -37,15 +40,15 @@ January 6th Deadline ( Day of presentation )
 		- Danger ( Flying too fast too close to objects )
 	Tutorial
 	Update controls
-	Quick robot swap
-	Robot view
-	Additional robots ( can add more robots to scene ) 
+	🟠Quick robot swap
+	✅Robot view
+	🟠Additional robots ( can add more robots to scene ) 
 	✅ Visuals ( lighting , UI )
 
 - Drone
 	Fix propeller animation
 	✅ Dust particles when near ground
-		- Fix bug when turn off near ground
+	✅	- Fix bug when turn off near ground
 		- update particles
 
 - Climbing Robot
@@ -53,12 +56,12 @@ January 6th Deadline ( Day of presentation )
 	Rely less on camera functionality ( possibly remove )
 
 - Bridge
-	Possible retexturing
-	Minor Mesh fixes
+	🟠Possible retexturing
+	🟠Minor Mesh fixes
 
 - Refactor
 	✅ Strain gauge 
 	✅ defect base class (spalling, cracks, etc)
 	✅ Drone to Report interaction ( See gauge vs defect interaction )
-	USE EVENTS** ( not important )
+	🟠USE EVENTS** ( not important )
 	
