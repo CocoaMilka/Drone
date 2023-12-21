@@ -5,7 +5,7 @@ Human-Centered Automated Bridge Inspection Training Simulator ( HABITS )
 January 6th Deadline ( Day of presentation )
 
 ✅ - Done
-🟠 - Not done but Optional/Not important
+🟠 - Not done but Optional/Not important?
 
 - Title Screen
 
@@ -18,7 +18,7 @@ January 6th Deadline ( Day of presentation )
 	Decals for defects ( Transparent with normals )
 	Make interactions manual
 	✅	- User can take photos on button press
-		- Identification of pictures for scoring ( reference gameplay section )
+	✅	- Identification of pictures for scoring ( reference gameplay section )
 	🟠 Decal variations ( Need images )
 	FIX DEFECT COLLISION, DRONE SHOULD NOT CRASH INTO HITBOX
 
@@ -32,10 +32,10 @@ January 6th Deadline ( Day of presentation )
 		- custom user field
 
 - Gameplay
-	Screenshots (saveable)
+	🟠Screenshots? ( saveable to disk )
 	Score System
 	✅	- points per scan
-		- time
+	🟠	- time
 		- Quality of photo ( more points when camera perpendicular )
 		- Danger ( Flying too fast too close to objects )
 	Tutorial
@@ -49,11 +49,11 @@ January 6th Deadline ( Day of presentation )
 	Fix propeller animation
 	✅ Dust particles when near ground
 	✅	- Fix bug when turn off near ground
-		- update particles
+	🟠	- update particles
 
 - Climbing Robot
-	Thickness measurement
-	Rely less on camera functionality ( possibly remove )
+	🟠Thickness measurement
+	🟠Rely less on camera functionality ( possibly remove )
 
 - Bridge
 	🟠Possible retexturing
@@ -63,5 +63,5 @@ January 6th Deadline ( Day of presentation )
 	✅ Strain gauge 
 	✅ defect base class (spalling, cracks, etc)
 	✅ Drone to Report interaction ( See gauge vs defect interaction )
-	🟠USE EVENTS** ( not important )
+	🟠USE EVENTS** ( not important but makes code more maintainable )
 	
