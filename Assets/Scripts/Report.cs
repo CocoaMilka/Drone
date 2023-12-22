@@ -52,7 +52,7 @@ public class Report : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetButtonDown("Report"))
         {
             ToggleReportVisibility();
         }

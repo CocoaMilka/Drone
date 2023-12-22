@@ -8,6 +8,8 @@ January 6th Deadline ( Day of presentation )
 🟠 - Not done but Optional/Not important?
 
 - Title Screen
+	✅ Title Menu
+	✅ Map Selection
 
 - Strain Gauge * PREFAB REFACTOR
 	✅ Make interactions manual (ex press A to retrieve data when close)

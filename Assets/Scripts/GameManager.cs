@@ -147,5 +147,10 @@ public class GameManager : MonoBehaviour
         int milliseconds = Mathf.FloorToInt((timer * 100F) % 100F);
         timerText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
     }
+
+    public void ReturnToTitleScreen()
+    {
+        SceneManager.LoadScene("Start Menu");
+    }
 }
 
