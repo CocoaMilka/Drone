@@ -23,9 +23,8 @@ public class TitleMenu : MonoBehaviour
             //SceneManager.LoadScene("10th Bridge");
 
             // Load Bridge Selection Screen which is hidden behind mainMenu
-            mainMenu.SetActive(false);
 
-            Debug.Log("Start button pressed!");
+            Debug.Log("Start button pressed! Menu now " + mainMenu.activeSelf);
         });
 
         tutorialButton.onClick.AddListener(() =>
@@ -44,16 +43,19 @@ public class TitleMenu : MonoBehaviour
         });
 
 
-
-        // Bridge Selection Buttons
-        startButton.onClick.AddListener(() =>
-        {
-            if (mainMenu) { mainMenu.SetActive(true); }
-        });
-
+        // Map menu buttons
         playButton.onClick.AddListener(() =>
         {
             SceneManager.LoadScene("10th Bridge");
         });
+    }
+
+    public void ToggleMainMenu()
+    {
+        mainMenu.SetActive(!mainMenu.activeSelf);
+    }
+    public void LoadMap(string mapName)
+    {
+        SceneManager.LoadScene(mapName);
     }
 }
