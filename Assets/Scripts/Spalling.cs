@@ -14,6 +14,6 @@ public class Spalling : Defect
     private void Update()
     {
         // Check whether current robot can see defect
-        whileInCameraView(GameManager.Instance.activeRobot.robotCamera);
+        // whileInCameraView(GameManager.Instance.activeRobot.robotCamera);
     }
 }

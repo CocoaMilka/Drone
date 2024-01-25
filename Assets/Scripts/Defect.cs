@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +17,17 @@ public abstract class Defect : MonoBehaviour
     public string timeCapture;
     public Sprite defectCapture;
 
-    // Send defect instance to report list for display
+    // Event to notify when a defect is scanned
+    public static event Action<Defect> OnDefectScanned;
+
     public virtual void sendDefectToReport()
     {
-        // Capture time defect was scanned
-        isChecked = true;   // Ensure defect can't be scanned twice
+        isChecked = true;
         timeCapture = GameManager.Instance.timer.ToString();
-        GameManager.Instance.score += 100; // Base 100 points for capturing a defect, extra given in photo scoring
+        GameManager.Instance.score += 100;
 
-        Report.Instance.defects.Add(this);
-        Report.Instance.updateReport();
+        // Raise the event for subscribers
+        OnDefectScanned?.Invoke(this);
 
         Debug.Log("Defect Sent to Report!");
     }
@@ -33,14 +35,6 @@ public abstract class Defect : MonoBehaviour
     // Determine whether defect is currently visible to active robot's camera
     public virtual void whileInCameraView(Camera camera)
     {
-        /*
-        if (camera == null || GetComponent<Collider>() == null || GetComponent<MeshRenderer>() == null)
-        {
-            Debug.LogError("Missing component: Camera, Collider, or MeshRenderer is null.");
-            return;
-        }
-        */
-
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
         if (GeometryUtility.TestPlanesAABB(planes, GetComponent<Collider>().bounds))
         {

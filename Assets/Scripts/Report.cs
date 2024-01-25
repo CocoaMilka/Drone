@@ -17,6 +17,7 @@ public class Report : MonoBehaviour
     float offset = 0;
     Quaternion rotation = Quaternion.identity;
 
+    // How far up/down the report goes when toggled
     [SerializeField] Vector3 shownPosition = new Vector3(0, 300, 0);
     [SerializeField] Vector3 hiddenPosition = new Vector3(0, -500, 0);
 
@@ -40,14 +41,14 @@ public class Report : MonoBehaviour
 
         Instance = this;
 
-        // Optionally, if you want this singleton to persist across scenes, uncomment the following line
-        // DontDestroyOnLoad(gameObject);
+        // Subscribe to the OnDefectScanned event
+        Defect.OnDefectScanned += AddDefectToReport;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnDestroy()
     {
-
+        // Unsubscribe to prevent memory leaks
+        Defect.OnDefectScanned -= AddDefectToReport;
     }
 
     void Update()
@@ -58,6 +59,14 @@ public class Report : MonoBehaviour
         }
     }
 
+    private void AddDefectToReport(Defect defect)
+    {
+        defects.Add(defect);
+        updateReport();
+    }
+
+    // Refreshes Report each time it is updated
+    // Based off Elliot's ARBI design
     public void updateReport()
     {
         // Clean report list before reprinting (prevents duplicates)
@@ -71,8 +80,6 @@ public class Report : MonoBehaviour
 
         foreach (Defect defect in defects)
         {
-            //GameObject currentDefect = Instantiate(defectPrefab, new Vector3(defectCollection.transform.position.x, defectCollection.transform.position.y + offset, 0), rotation, defectCollection.transform);
-
             RectTransform rectTransform = defectCollection.GetComponent<RectTransform>();
             Vector2 centerPosition = new Vector2(
                 rectTransform.position.x + rectTransform.rect.width * (0.5f - rectTransform.pivot.x),
