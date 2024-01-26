@@ -78,6 +78,7 @@ public abstract class RobotController : MonoBehaviour
             // Check if the hit object has the "Defect" tag
             if (hit.collider.gameObject.tag == "Defect")
             {
+                // The rest of this should be separated into a scoring class of some sort
                 var defectObject = hit.collider.gameObject.GetComponent<Defect>();
 
                 if (defectObject != null && !defectObject.isChecked)
@@ -95,8 +96,9 @@ public abstract class RobotController : MonoBehaviour
                         float scoreMultiplier = (maxDistance - distance) / maxDistance;
                         int additionalPoints = Mathf.RoundToInt(maxPoints * scoreMultiplier);
 
-                        // Add points to the score
+                        // Add points to the score and save to defect for grading purposes
                         GameManager.Instance.score += additionalPoints;
+                        defectObject.defectScore = additionalPoints;
 
                         // Optional: Debug Log for testing
                         Debug.Log("Added " + additionalPoints + " points based on distance. New score: " + GameManager.Instance.score);
@@ -105,7 +107,6 @@ public abstract class RobotController : MonoBehaviour
                     {
                         Debug.Log("No points added, defect is too far away.");
                     }
-
 
                     defectObject.defectCapture = defectCaptureSprite;
                     defectObject.sendDefectToReport();

@@ -26,7 +26,7 @@ public class DroneController : RobotController
     public float turnTorqueMultiplier = 1.5f;
     public float verticalForceMultiplier = 10f;
 
-    public float drag = 1.5f;
+    [SerializeField] public float drag = 1.5f;
 
     // Controller Input
     public float horizontalSensitivity = 0.1f;

@@ -16,6 +16,7 @@ public abstract class Defect : MonoBehaviour
     public float measurement = 0.0f;
     public string timeCapture;
     public Sprite defectCapture;
+    public int defectScore = 0; // Score based on photo quality ; updated in RobotController
 
     // Event to notify when a defect is scanned
     public static event Action<Defect> OnDefectScanned;
@@ -24,7 +25,10 @@ public abstract class Defect : MonoBehaviour
     {
         isChecked = true;
         timeCapture = GameManager.Instance.timer.ToString();
+
+        // Need to separate scoring into an event or class
         GameManager.Instance.score += 100;
+        defectScore += 100;
 
         // Raise the event for subscribers
         OnDefectScanned?.Invoke(this);
