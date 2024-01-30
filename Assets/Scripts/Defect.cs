@@ -6,9 +6,11 @@ using UnityEngine;
 
 public abstract class Defect : MonoBehaviour
 {
-    // Contains defect variations
+    // Contains defect variations ( Currently unimplemented )
+    // Goal: Randomly select sprite from list of defect variations
     [SerializeField] List<Sprite> sprites = new List<Sprite>();
 
+    // Prevents defect from being recorded more than once
     public bool isChecked = false;
 
     // Defect measurements
@@ -16,7 +18,10 @@ public abstract class Defect : MonoBehaviour
     public float measurement = 0.0f;
     public string timeCapture;
     public Sprite defectCapture;
-    public int defectScore = 0; // Score based on photo quality ; updated in RobotController
+
+    public int defectScore = 0; // Score from capture ; updated in RobotController
+    public int distanceScore = 0; // Score based on photo distance from defect
+    public int angleScore = 0; // Score based on photo angle from defect ( perpendicular = max points )
 
     // Event to notify when a defect is scanned
     public static event Action<Defect> OnDefectScanned;

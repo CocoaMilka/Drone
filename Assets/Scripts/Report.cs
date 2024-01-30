@@ -80,6 +80,7 @@ public class Report : MonoBehaviour
 
         foreach (Defect defect in defects)
         {
+            // Not sure if this is needed anymore? Positioning should be handled by collection vertial group
             RectTransform rectTransform = defectCollection.GetComponent<RectTransform>();
             Vector2 centerPosition = new Vector2(
                 rectTransform.position.x + rectTransform.rect.width * (0.5f - rectTransform.pivot.x),

@@ -98,7 +98,7 @@ public abstract class RobotController : MonoBehaviour
 
                         // Add points to the score and save to defect for grading purposes
                         GameManager.Instance.score += additionalPoints;
-                        defectObject.defectScore = additionalPoints;
+                        defectObject.distanceScore = additionalPoints;
 
                         // Optional: Debug Log for testing
                         Debug.Log("Added " + additionalPoints + " points based on distance. New score: " + GameManager.Instance.score);
