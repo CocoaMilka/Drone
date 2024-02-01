@@ -18,13 +18,13 @@ public class ScoringSystem : MonoBehaviour
     public GameObject gradePrefab; // UI representation of scores
     public GameObject gradeCollection; // UI Scroll containing all gradePrefabs
 
-    // Contains all defects
-    List<Defect> defects;
+    // Contains all defects ; Filled in inspector
+    [Header("Populate with all defects per scene")]
+    [SerializeField] public List<Defect> defects = new List<Defect>();
 
     private void Awake()
     {
         Debug.Log("Starting up Scoring system...");
-        defects = new List<Defect>();
     }
 
     void OnEnable()
@@ -44,14 +44,15 @@ public class ScoringSystem : MonoBehaviour
         //capturedDefects++;
 
         // Each defect contains information about its score
-        defects.Add(defect);
+        //defects.Add(defect);
+
+        // NEW APPROACH : Add all defects from the start instead of storing references y'know??
 
         Debug.Log($"Updated Score: {totalScore}");
     }
 
     private string CalculateLetterGrade(float percentage)
     {
-        // Determine letter grade based on percentage
         string letterGrade = "E";
 
         if (percentage >= 90)
