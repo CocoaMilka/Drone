@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 721422187893022710}
   - component: {fileID: 721422187893022711}
-  - component: {fileID: 721422187893022708}
+  - component: {fileID: 8640840636318910017}
   m_Layer: 0
   m_Name: Spalling
   m_TagString: Defect
@@ -108,8 +108,11 @@ MonoBehaviour:
   measurement: 0
   timeCapture: 
   defectCapture: {fileID: 0}
---- !u!135 &721422187893022708
-SphereCollider:
+  defectScore: 0
+  distanceScore: 0
+  angleScore: 0
+--- !u!65 &8640840636318910017
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,5 +122,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7
-  m_Center: {x: 0.39, y: 0, z: 0}
+  m_Size: {x: 0.09, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

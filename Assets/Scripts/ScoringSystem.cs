@@ -48,6 +48,10 @@ public class ScoringSystem : MonoBehaviour
 
         // NEW APPROACH : Add all defects from the start instead of storing references y'know??
 
+        // Can add scoring here lel
+
+
+
         Debug.Log($"Updated Score: {totalScore}");
     }
 

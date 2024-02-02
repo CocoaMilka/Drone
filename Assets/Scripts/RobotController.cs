@@ -100,6 +100,19 @@ public abstract class RobotController : MonoBehaviour
                         GameManager.Instance.score += additionalPoints;
                         defectObject.distanceScore = additionalPoints;
 
+                        // Calculate the angle score
+                        Vector3 rayDirection = (hit.point - cameraTransform.position).normalized;
+                        float angleCosine = Mathf.Abs(Vector3.Dot(rayDirection, hit.normal)); // Use Abs to ensure positive values
+                        float angleScoreMultiplier = angleCosine; // Directly use cosine value since we want perpendicular angles to score higher
+                        int anglePoints = Mathf.RoundToInt(maxPoints * angleScoreMultiplier);
+
+
+                        Debug.Log("Angle Score: " + anglePoints);
+
+                        // Add angle points to the score and save to defect for grading purposes
+                        GameManager.Instance.score += anglePoints;
+                        defectObject.angleScore = anglePoints;
+
                         // Optional: Debug Log for testing
                         Debug.Log("Added " + additionalPoints + " points based on distance. New score: " + GameManager.Instance.score);
                     }
