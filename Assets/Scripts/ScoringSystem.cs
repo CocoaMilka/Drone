@@ -18,6 +18,9 @@ public class ScoringSystem : MonoBehaviour
     public GameObject gradePrefab; // UI representation of scores
     public GameObject gradeCollection; // UI Scroll containing all gradePrefabs
 
+    // This should be event based or something with how scattered UI toggling is :/
+    public GameObject reportUI;
+
     // Contains all defects ; Filled in inspector
     [Header("Populate with all defects per scene")]
     [SerializeField] public List<Defect> defects = new List<Defect>();
@@ -25,6 +28,7 @@ public class ScoringSystem : MonoBehaviour
     private void Awake()
     {
         Debug.Log("Starting up Scoring system...");
+        gradeCard.SetActive(false);
     }
 
     void OnEnable()
@@ -85,6 +89,8 @@ public class ScoringSystem : MonoBehaviour
 
     public void CalculateFinalGrade()
     {
+        GameManager.Instance.HUD.SetActive(false);
+        reportUI.SetActive(false);
         gradeCard.SetActive(true);
 
         Debug.Log("Calculating Grade...");
