@@ -2431,7 +2431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -3}
+  m_FollowOffset: {x: 0, y: 0.4, z: -1.3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3269,7 +3269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -3}
+  m_FollowOffset: {x: 0, y: 0.4, z: -1.3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3836,7 +3836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.5, z: -3}
+  m_FollowOffset: {x: 0, y: 0.4, z: -1.3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4553,7 +4553,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.31863174, y: 0.15688886, z: -0.05356416, w: 0.9332688}
+  m_LocalRotation: {x: 0.31863174, y: 0.15688887, z: -0.05356417, w: 0.9332688}
   m_LocalPosition: {x: 0.85515976, y: 2.807, z: -1.8637463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12117,7 +12117,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443812116}
-  m_LocalRotation: {x: 0.31863168, y: 0.15688886, z: -0.053564157, w: 0.9332688}
+  m_LocalRotation: {x: 0.31863168, y: 0.15688889, z: -0.053564176, w: 0.9332688}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13262,10 +13262,10 @@ MonoBehaviour:
   m_BindingMode: 5
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 4.5
-    m_Radius: 1.75
-  - m_Height: 2.5
-    m_Radius: 3
+  - m_Height: 0.4
+    m_Radius: 1.3
+  - m_Height: 0.4
+    m_Radius: 1.3
   - m_Height: 0.4
     m_Radius: 1.3
   m_LegacyHeadingBias: 3.4028235e+38
@@ -16623,6 +16623,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 126366206486245184, guid: 19f8173ccea2e1f439fa859782c9c6c6, type: 3}
+      propertyPath: m_Drag
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 126366206486245184, guid: 19f8173ccea2e1f439fa859782c9c6c6, type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 126366206486245185, guid: 19f8173ccea2e1f439fa859782c9c6c6, type: 3}
       propertyPath: drag
       value: 0.3

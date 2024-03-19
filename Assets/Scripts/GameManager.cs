@@ -152,5 +152,20 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Start Menu");
     }
+
+    void OnEnable()
+    {
+        DroneController.OnAim += ToggleUI;
+    }
+
+    void OnDisable()
+    {
+        DroneController.OnAim -= ToggleUI;
+    }
+
+    public void ToggleUI(bool isAiming)
+    {
+        HUD.SetActive(!isAiming);
+    }
 }
 

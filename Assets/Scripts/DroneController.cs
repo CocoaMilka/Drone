@@ -34,6 +34,10 @@ public class DroneController : RobotController
 
     private Rigidbody body;
 
+    // Events
+    public delegate void AimAction(bool isAiming);
+    public static event AimAction OnAim;
+
     void Start()
     {
         InitializeCamera();
@@ -69,11 +73,13 @@ public class DroneController : RobotController
             {
                 virtualCam.GetComponent<CinemachineVirtualCamera>().Priority = 10;
                 CameraFrame.SetActive(true);
+                OnAim?.Invoke(true); // Aim is active
             }
             else
             {
                 virtualCam.GetComponent<CinemachineVirtualCamera>().Priority = 0;
                 CameraFrame.SetActive(false);
+                OnAim?.Invoke(false); // Aim is not active
             }
 
             // Take pictures of Defects
